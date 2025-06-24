@@ -19,7 +19,7 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
   Widget build(BuildContext context) {
     // Consistent palette with dashboard
     const greenLight = Color(0xFF96ceb1); // #96ceb1
-    const greenLighter = Color(0xFFeef4f0); // #eef4f0
+    // const greenLighter = Color(0xFFeef4f0); // #eef4f0
     const green = Color(0xFF86c7a0); // #86c7a0
     const greenDark = Color(0xFF1a844a); // #1a844a
     const red = Color(0xFFd6222d); // #d6222d
@@ -36,7 +36,7 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
       fontWeight: FontWeight.w500,
     );
     final tileIconColor = green;
-    final bgLight = greenLighter;
+    // final bgLight = greenLighter;
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

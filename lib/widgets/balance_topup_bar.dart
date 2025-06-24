@@ -49,7 +49,7 @@ class BalanceTopUpBar extends StatelessWidget {
           const Spacer(),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.accentGreen,
+              backgroundColor: const Color.fromARGB(255, 41, 185, 111),
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
             ),

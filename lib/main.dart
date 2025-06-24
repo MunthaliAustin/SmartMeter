@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_meter/screens/dashboard.dart';
+import 'package:smart_meter/screens/sign_in.dart';
 import 'package:smart_meter/screens/more_settings.dart';
 import 'widgets/floating_bottom_tab_bar.dart';
 
@@ -67,6 +68,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final pages = [
       const DashboardScreen(),
+      // const SignInPage(),
       MoreSettingsPage(
         darkMode: widget.darkMode,
         onDarkModeChanged: widget.onDarkModeChanged,

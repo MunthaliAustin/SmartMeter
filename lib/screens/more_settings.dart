@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
 class MoreSettingsPage extends StatefulWidget {
-  const MoreSettingsPage({super.key});
+  final bool darkMode;
+  final ValueChanged<bool> onDarkModeChanged;
+
+  const MoreSettingsPage({
+    Key? key,
+    required this.darkMode,
+    required this.onDarkModeChanged,
+  }) : super(key: key);
 
   @override
   State<MoreSettingsPage> createState() => _MoreSettingsPageState();
 }
 
 class _MoreSettingsPageState extends State<MoreSettingsPage> {
-  bool _darkMode = true;
-
   @override
   Widget build(BuildContext context) {
     // Consistent palette with dashboard
@@ -34,7 +39,7 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
     final bgLight = greenLighter;
 
     return Scaffold(
-      backgroundColor: bgLight,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 60, 16, 16),
         children: [
@@ -79,8 +84,8 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
             child: Column(
               children: [
                 SwitchListTile(
-                  value: _darkMode,
-                  onChanged: (val) => setState(() => _darkMode = val),
+                  value: widget.darkMode,
+                  onChanged: widget.onDarkModeChanged,
                   title: Row(
                     children: [
                       Icon(Icons.nights_stay_rounded, color: green, size: 23),

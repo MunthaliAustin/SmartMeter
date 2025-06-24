@@ -16,7 +16,7 @@ class FloatingBottomTabBar extends StatelessWidget {
     // Tab data
     final tabs = [
       {'icon': Icons.home_rounded, 'label': 'Home'},
-      {'icon': Icons.more_horiz_rounded, 'label': 'More'},
+      {'icon': Icons.menu_rounded, 'label': 'More'}, // Changed icon here
     ];
 
     // Define the highlight color

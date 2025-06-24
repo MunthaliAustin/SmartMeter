@@ -26,21 +26,25 @@ class BalanceTopUpBar extends StatelessWidget {
         children: [
           const Icon(Icons.account_balance_wallet_rounded, color: AppColors.primaryGreen, size: 28),
           const SizedBox(width: 10),
-          Text(
-            "Balance",
-            style: TextStyle(
-              color: AppColors.primaryGreen,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            "MWK ${balance.toStringAsFixed(2)}",
-            style: const TextStyle(
-              fontSize: 20,
-              color: AppColors.primaryGreen,
-              fontWeight: FontWeight.bold,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Balance",
+                style: TextStyle(
+                  color: AppColors.primaryGreen,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                "MWK ${balance.toStringAsFixed(2)}",
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: AppColors.primaryGreen,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
           const Spacer(),
           ElevatedButton(

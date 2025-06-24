@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade200,
         primarySwatch: Colors.green,
-        fontFamily: 'Roboto',
+        fontFamily: 'Montserrat',
       ),
       home: const MainScreen(),
     );

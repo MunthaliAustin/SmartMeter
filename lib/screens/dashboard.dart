@@ -14,7 +14,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final List<String> _meterNumbers = ["123456789", "987654321"];
 
   void _onTopUp() {
-    // Implement your top up logic here
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Top Up clicked!")),
     );
@@ -30,6 +29,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Profile clicked!")),
     );
+  }
+
+  void _onTransactionHistoryTap() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Transaction History clicked!")),
+    );
+    // Navigator.push(context, MaterialPageRoute(builder: (_) => TransactionHistoryPage()));
   }
 
   @override
@@ -49,8 +55,50 @@ class _DashboardScreenState extends State<DashboardScreen> {
           onNotificationTap: _onNotificationTap,
           onProfileTap: _onProfileTap,
         ),
-        const SizedBox(height: 50),
-        // --- You can add more dashboard content here, e.g., usage stats, recent activity, etc. ---
+        const SizedBox(height: 70),
+        // --- Transaction History Button (Professional & Attractive) ---
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: _onTransactionHistoryTap,
+              style: ElevatedButton.styleFrom(
+                elevation: 6,
+                backgroundColor: const Color(0xFF1a844a),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 18),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                shadowColor: const Color(0xFF96ceb1).withOpacity(0.22),
+                textStyle: const TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  letterSpacing: 0.2,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "Transaction History",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 17,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Icon(Icons.arrow_forward_ios_rounded, size: 19)
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 28),
+        // --- Recent Activity Section ---
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
@@ -63,7 +111,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   fontSize: 18,
                 ),
               ),
-              // Add your dashboard cards or list here...
               const SizedBox(height: 12),
               Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),

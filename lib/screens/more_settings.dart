@@ -12,7 +12,7 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Color palette
+    // Consistent palette with dashboard
     const greenLight = Color(0xFF96ceb1); // #96ceb1
     const greenLighter = Color(0xFFeef4f0); // #eef4f0
     const green = Color(0xFF86c7a0); // #86c7a0
@@ -20,61 +20,24 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
     const red = Color(0xFFd6222d); // #d6222d
 
     final sectionTitleStyle = TextStyle(
-      color: greenLight,
+      color: greenDark,
       fontWeight: FontWeight.bold,
       fontSize: 15,
       letterSpacing: 0.1,
     );
     final tileTextStyle = TextStyle(
-      color: Colors.white.withOpacity(0.95),
+      color: greenDark,
       fontSize: 16,
       fontWeight: FontWeight.w500,
     );
-    final tileIconColor = greenLight;
-    final bgDark = const Color(0xFF181C1B); // custom dark background
+    final tileIconColor = green;
+    final bgLight = greenLighter;
 
     return Scaffold(
-      backgroundColor: bgDark,
-      appBar: AppBar(
-        backgroundColor: bgDark,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 20),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        title: const Text(
-          "Settings",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-          ),
-        ),
-        centerTitle: false,
-      ),
+      backgroundColor: bgLight,
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 6, 16, 16),
+        padding: const EdgeInsets.fromLTRB(16, 60, 16, 16),
         children: [
-          // Search Bar
-          Container(
-            margin: const EdgeInsets.only(bottom: 18),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: greenLighter.withOpacity(0.11),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: TextField(
-              style: const TextStyle(color: Colors.white),
-              cursorColor: green,
-              decoration: InputDecoration(
-                icon: Icon(Icons.search, color: greenLight, size: 22),
-                hintText: "Search",
-                hintStyle: TextStyle(color: greenLight.withOpacity(0.8)),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-
           // Account Section
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -85,27 +48,23 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
             iconColor: tileIconColor,
             title: "Profile & Accounts",
             onTap: () {},
-          ),
-          _SettingsTile(
-            icon: Icons.shield_outlined,
-            iconColor: tileIconColor,
-            title: "Security",
-            onTap: () {},
+            textStyle: tileTextStyle,
           ),
           _SettingsTile(
             icon: Icons.privacy_tip_outlined,
             iconColor: tileIconColor,
             title: "Privacy & Security",
             onTap: () {},
+            textStyle: tileTextStyle,
           ),
           _SettingsTile(
             icon: Icons.credit_card_outlined,
             iconColor: tileIconColor,
-            title: "Billing & Subscription",
+            title: "Notifications",
             onTap: () {},
+            textStyle: tileTextStyle,
             bottom: 18,
           ),
-
           // Personalization Section
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -113,9 +72,10 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
+              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.04),
               borderRadius: BorderRadius.circular(12),
             ),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15), // <-- Added padding
             child: Column(
               children: [
                 SwitchListTile(
@@ -133,42 +93,34 @@ class _MoreSettingsPageState extends State<MoreSettingsPage> {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                 ),
                 _SettingsTile(
-                  icon: Icons.color_lens_outlined,
-                  iconColor: tileIconColor,
-                  title: "Appearance",
-                  onTap: () {},
-                  showDivider: true,
-                  dense: true,
-                ),
-                _SettingsTile(
                   icon: Icons.language_rounded,
                   iconColor: tileIconColor,
                   title: "Language",
-                  trailing: Text("English", style: TextStyle(color: greenLight, fontSize: 14)),
+                  trailing: Text("English", style: TextStyle(color: green, fontSize: 14)),
                   onTap: () {},
                   showDivider: true,
                   dense: true,
-                ),
-                _SettingsTile(
-                  icon: Icons.grid_view_rounded,
-                  iconColor: tileIconColor,
-                  title: "Themes Organize",
-                  onTap: () {},
-                  dense: true,
+                  textStyle: tileTextStyle,
                 ),
               ],
             ),
           ),
           const SizedBox(height: 32),
-          // Optional: Add a logout or delete account with red color
-          TextButton.icon(
-            style: TextButton.styleFrom(
-              foregroundColor: red,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-            icon: const Icon(Icons.logout_rounded),
-            label: const Text("Log out"),
-            onPressed: () {},
+          // Center the logout button
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton.icon(
+                style: TextButton.styleFrom(
+                  foregroundColor: red,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                ),
+                icon: const Icon(Icons.logout_rounded),
+                label: const Text("Log out"),
+                onPressed: () {},
+              ),
+            ],
           ),
         ],
       ),
@@ -185,6 +137,7 @@ class _SettingsTile extends StatelessWidget {
   final bool dense;
   final VoidCallback? onTap;
   final double bottom;
+  final TextStyle? textStyle;
 
   const _SettingsTile({
     required this.icon,
@@ -195,13 +148,14 @@ class _SettingsTile extends StatelessWidget {
     this.showDivider = false,
     this.dense = false,
     this.bottom = 0,
+    this.textStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     final border = Border(
       bottom: showDivider
-          ? BorderSide(color: Colors.white.withOpacity(0.07), width: 1)
+          ? BorderSide(color: iconColor.withOpacity(0.12), width: 1)
           : BorderSide.none,
     );
     return Container(
@@ -212,13 +166,8 @@ class _SettingsTile extends StatelessWidget {
         minLeadingWidth: 26,
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         leading: Icon(icon, color: iconColor, size: 22),
-        title: Text(title,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.95),
-              fontSize: dense ? 15 : 16,
-              fontWeight: FontWeight.w500,
-            )),
-        trailing: trailing ?? const Icon(Icons.chevron_right_rounded, color: Colors.white54),
+        title: Text(title, style: textStyle),
+        trailing: trailing ?? Icon(Icons.chevron_right_rounded, color: iconColor.withOpacity(0.55)),
         onTap: onTap,
       ),
     );

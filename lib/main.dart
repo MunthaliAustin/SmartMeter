@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smart_meter/screens/dashboard.dart';
+import 'package:smart_meter/screens/more_settings.dart';
 import 'widgets/floating_bottom_tab_bar.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Smart Meter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.grey.shade200,
-      ),
-      home: const MainScreen(),
-    );
-  }
-}
-
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -33,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final pages = [
       const DashboardScreen(),
-      Center(child: Text('More', style: Theme.of(context).textTheme.headlineLarge)),
+      const MoreSettingsPage(),
     ];
 
     return Scaffold(
@@ -51,6 +35,28 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Smart Meter',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.grey.shade200,
+        primarySwatch: Colors.green,
+        fontFamily: 'Roboto',
+      ),
+      home: const MainScreen(),
     );
   }
 }

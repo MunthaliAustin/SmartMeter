@@ -43,8 +43,8 @@ class DashboardHeaderCard extends StatelessWidget {
             width: double.infinity,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(15),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
               ),
               gradient: LinearGradient(
                 colors: [Color.fromARGB(255, 70, 182, 120), AppColors.accentGreen],

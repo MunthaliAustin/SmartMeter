@@ -13,7 +13,7 @@ class _GreetingSliderState extends State<GreetingSlider> {
   final List<String> messages = [
     "Let's keep your data in check!",
     "Don't forget to top up when low.",
-    "Monitor your usage regularly."
+    "Monitor your usage regularly.",
   ];
   int _currentIndex = 0;
   Timer? _timer;
@@ -46,26 +46,32 @@ class _GreetingSliderState extends State<GreetingSlider> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Hi ${widget.username},",
-          style: const TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
         Row(
           children: [
-            Text(
-              "Good ${getGreeting()}",
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white70,
-                fontWeight: FontWeight.w400,
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: getGreeting(),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white70,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' ${widget.username}',
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(width: 6),
-            const Icon(Icons.wb_sunny, color: Colors.white70, size: 18)
+            const Icon(Icons.wb_sunny, color: Colors.white70, size: 18),
           ],
         ),
         const SizedBox(height: 8),
